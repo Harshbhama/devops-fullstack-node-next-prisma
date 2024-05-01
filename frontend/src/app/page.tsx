@@ -16,7 +16,12 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`${apiUrl}/users`);
+      const response = await axios({
+        method: 'get',
+        url: `${apiUrl}/users`,
+        withCredentials: false,
+
+      });
       setUsers(response.data.reverse())
     }
     fetchData();
