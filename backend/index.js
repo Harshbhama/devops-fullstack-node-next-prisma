@@ -4,7 +4,7 @@ const cors = require('cors');
 const prisma = new PrismaClient();
 const app = express();
 var corsOptions = {
-    origin: '*' };
+    origin: 'http://localhost:3000, http://13.235.75.89:3000/' };
 app.use(cors(corsOptions));
 app.use((req, res, next) => {
     res.setHeader(`Access-Control-Allow-Origin`, '*');
