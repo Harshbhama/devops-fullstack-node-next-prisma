@@ -9,13 +9,14 @@ var whitelist = ['http://localhost:3000', 'http://13.235.75.89:3000/', ' http://
 var corsOptions = {
     origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
+        console.log("added for", origin)
         callback(null, true)
     } else {
         callback(new Error('Not allowed by CORS'))
     }
     }
 }
-
+console.log("whiteList", whitelist)
 app.use(cors(corsOptions));
 app.use((req, res, next) => {
     res.setHeader(`Access-Control-Allow-Origin`, '*');
