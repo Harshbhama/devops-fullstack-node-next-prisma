@@ -1,9 +1,11 @@
 const express = require('express')
 const { PrismaClient } = require("@prisma/client")
-
+const cors = require('cors');
 const prisma = new PrismaClient();
 const app = express();
-
+var corsOptions = {
+    origin: '*' };
+app.use(cors(corsOptions));
 app.use((req, res, next) => {
     res.setHeader(`Access-Control-Allow-Origin`, '*');
     res.setHeader(`Access-Control-Allow-Methods`, 'GET, POST, PUT, DELETE');
