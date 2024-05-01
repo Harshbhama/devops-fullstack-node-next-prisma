@@ -3,30 +3,18 @@ const { PrismaClient } = require("@prisma/client")
 const cors = require('cors');
 const prisma = new PrismaClient();
 const app = express();
-// var corsOptions = {
-//     origin: 'http://localhost:3000, http://13.235.75.89:3000/, http://13.235.75.89:3000, http://13.235.75.89' };
-var whitelist = ['http://localhost:3000', 'http://13.235.75.89:3000/', ' http://13.235.75.89:3000', 'http://13.235.75.89']
-var corsOptions = {
-    origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-        console.log("added for", origin)
-        callback(null, true)
-    } else {
-        callback(new Error('Not allowed by CORS'))
-    }
-    }
-}
-console.log("whiteList", whitelist)
-app.use(cors(corsOptions));
-app.use((req, res, next) => {
-    res.setHeader(`Access-Control-Allow-Origin`, '*');
-    res.setHeader(`Access-Control-Allow-Methods`, 'GET, POST, PUT, DELETE');
-    res.setHeader(`Access-Control-Allow-Headers`, 'Content-Type');
-    next();
-})
+app.use(
+    cors({origin: ['http://localhost:3000', 'http://127.0.0.1:8888','http://127.0.0.1:3000', 'http://13.235.75.89:3000/', ' http://13.235.75.89:3000', 'http://13.235.75.89']})
+  );
+// app.use((req, res, next) => {
+//     res.setHeader(`Access-Control-Allow-Origin`, '*');
+//     res.setHeader(`Access-Control-Allow-Methods`, 'GET, POST, PUT, DELETE');
+//     res.setHeader(`Access-Control-Allow-Headers`, 'Content-Type');
+//     next();
+// })
 
 //
-
+console.log("app cors");
 app.get('/test', (req, res) => {
     try {
         res.status(200).json({message: 'API is working'})
