@@ -18,9 +18,7 @@ export default function Home() {
     const fetchData = async () => {
       const response = await axios({
         method: 'get',
-        url: `${apiUrl}/users`,
-        withCredentials: false,
-
+        url: `${apiUrl}/users`
       });
       setUsers(response.data.reverse())
     }
