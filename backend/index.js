@@ -3,23 +3,17 @@ const { PrismaClient } = require("@prisma/client")
 const cors = require('cors');
 const prisma = new PrismaClient();
 const app = express();
-// app.use(
-//     cors({origin: ['http://localhost:3000', 'http://127.0.0.1:8888','http://127.0.0.1:3000', 'http://13.235.75.89:3000/', ' http://13.235.75.89:3000', 'http://13.235.75.89']})
-//   );
+app.use(
+    cors({origin: ['http://localhost:3000', 'http://127.0.0.1:8888','http://127.0.0.1:3000', 'http://13.235.75.89:3000/', ' http://13.235.75.89:3000', 'http://13.235.75.89']})
+  );
 app.use((req, res, next) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.send({ "msg": "This has CORS enabled 🎈" })
+    res.setHeader(`Access-Control-Allow-Origin`, '*');
+    res.setHeader(`Access-Control-Allow-Methods`, 'GET, POST, PUT, DELETE');
+    res.setHeader(`Access-Control-Allow-Headers`, 'Content-Type');
     next();
 })
-// app.use((req, res, next) => {
-//     res.setHeader(`Access-Control-Allow-Origin`, '*');
-//     res.setHeader(`Access-Control-Allow-Methods`, 'GET, POST, PUT, DELETE');
-//     res.setHeader(`Access-Control-Allow-Headers`, 'Content-Type');
-//     next();
-// })
+console.log('iter..')
 
-//
-console.log("set Res");
 app.get('/test', (req, res) => {
     try {
         res.status(200).json({message: 'API is working'})
@@ -29,8 +23,6 @@ app.get('/test', (req, res) => {
 })
 
 app.get('/users', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.send({ "msg": "This has CORS enabled 🎈" })
     try{
         console.log("prsima", prisma);
         await prisma.user.findMany({});
