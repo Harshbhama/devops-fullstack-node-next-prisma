@@ -9,6 +9,7 @@ interface User {
   name: string;
   email: string
 }
+axios.defaults.withCredentials = true;
 export default function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
   const [users, setUsers] = useState([]);
