@@ -9,7 +9,7 @@ interface User {
   name: string;
   email: string
 }
-axios.defaults.withCredentials = true;
+
 export default function Home() {
   const apiUrl = 'http://13.235.75.89:4000'
   const [users, setUsers] = useState([]);
