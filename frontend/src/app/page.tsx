@@ -11,7 +11,7 @@ interface User {
 }
 axios.defaults.withCredentials = true;
 export default function Home() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+  const apiUrl = 'http://13.235.75.89:4000'
   const [users, setUsers] = useState([]);
   const [newUser, setUpdateUser] = useState({id: '', name: '', email: ''})
 
